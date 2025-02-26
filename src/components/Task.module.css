@@ -1,0 +1,93 @@
+.containerInput {
+  display: flex;
+  width: 100%;
+}
+
+.containerInput input {
+  background: var(--gray-500);
+  border: solid 1px var(--gray-700);
+  border-radius: 8px;
+  height: 3.375rem;
+  width: 100%;
+  padding: 1rem;
+  color: var(--gray-100);
+}
+
+.containerInput input::placeholder {
+  color: var(--gray-300);
+}
+
+.containerInput button {
+  background: var(--blue-500);
+  border-radius: 8px;
+  color: var(--gray-100);
+  font-size: 0.875rem;
+  font-weight: bold;
+  height: 3.25rem;
+  border: none;
+  margin-left: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.containerInput button:hover {
+  background: var(--blue-300);
+}
+
+.containerInput button svg {
+  margin-left: 0.3rem;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+
+header div {
+  display: flex;
+}
+
+header .taskCreated {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--blue-300);
+  margin-right: 0.5rem;
+}
+
+header .taskCompleted {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--purple-300);
+  margin-right: 0.5rem;
+}
+
+header span {
+  font-size: 0.75rem;
+  text-align: center;
+  background: var(--gray-400);
+  color: var(--gray-200);
+  padding: 0.125rem 0.5rem;
+  border-radius: 10px;
+}
+
+.containerTodoEmpty {
+  text-align: center;
+  padding: 4rem 1.5rem;
+  border-radius: 8px;
+  border-top: 1px solid var(--gray-400);
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.containerTodoEmpty p {
+  color: var(--gray-300);
+  line-height: 1.4rem;
+}
+.containerTodoEmpty p:not(:last-child) {
+  font-weight: bold;
+  margin-top: 1rem;
+}

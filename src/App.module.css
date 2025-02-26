@@ -1,0 +1,18 @@
+.containerTask {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 46rem;
+  margin: -1.688rem auto 0 auto;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 86.5%;
+  }
+
+  .containerTask {
+    padding: 1.5rem;
+  }
+}
