@@ -1,6 +1,6 @@
-import { PlusCircle } from "@phosphor-icons/react";
-import Clipboard from "../assets/clipboard.svg";
+import { PlusCircle, Trash } from "@phosphor-icons/react";
 import styles from "./Task.module.css";
+// import { TodoEmpty } from "./TodoEmpty";
 
 export function Task() {
   return (
@@ -23,10 +23,19 @@ export function Task() {
           <span className={styles.taskCounter}>0</span>
         </div>
       </header>
-      <div className={styles.containerTodoEmpty}>
-        <img src={Clipboard} alt="Lista de Tarefas" />
-        <p>Você ainda não tem tarefas cadastradas</p>
-        <p>Crie tarefas e organize seus itens a fazer</p>
+      {/* <TodoEmpty /> */}
+      <div className={styles.containerTodo}>
+        <label>
+          <input type="checkbox" name="" id="" />
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged.
+          <span className={styles.checkmark}></span>
+        </label>
+        <Trash size={24} />
       </div>
     </>
   );

@@ -30,10 +30,15 @@
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  cursor: pointer;
 }
 
 .containerInput button:hover {
   background: var(--blue-300);
+}
+
+.containerInput button:focus {
+  box-shadow: none;
 }
 
 .containerInput button svg {
@@ -74,20 +79,69 @@ header span {
   border-radius: 10px;
 }
 
-.containerTodoEmpty {
-  text-align: center;
-  padding: 4rem 1.5rem;
-  border-radius: 8px;
-  border-top: 1px solid var(--gray-400);
-  width: 100%;
-  margin-top: 1.5rem;
+.containerTodo {
+  display: flex;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--gray-500);
+  border-radius: 0.5rem;
 }
 
-.containerTodoEmpty p {
-  color: var(--gray-300);
+.containerTodo label {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 0 0.75rem 0 2rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 0.875rem;
   line-height: 1.4rem;
 }
-.containerTodoEmpty p:not(:last-child) {
-  font-weight: bold;
-  margin-top: 1rem;
+
+.containerTodo input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.containerTodo .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.125rem;
+  width: 1.125rem;
+  background-color: transparent;
+  border: solid 2px var(--blue-300);
+  border-radius: 50%;
+}
+
+.containerTodo label:hover input ~ .checkmark {
+  border: solid 2px var(--blue-500);
+  background: var(--blue-100);
+}
+
+.containerTodo label input:checked ~ .checkmark {
+  background: var(--purple-500);
+  border: none;
+}
+
+.containerTodo label input:checked + label {
+  text-decoration: line-through;
+}
+
+.checkmark:after {
+  content: "✔";
+  position: absolute;
+  display: none;
+  font-size: 0.625rem;
+  left: 0.313rem;
+  bottom: -0.125rem;
+}
+
+.containerTodo label input:checked ~ .checkmark:after {
+  display: block;
 }

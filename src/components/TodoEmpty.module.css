@@ -1,0 +1,17 @@
+.containerTodoEmpty {
+  text-align: center;
+  padding: 4rem 1.5rem;
+  border-radius: 8px;
+  border-top: 1px solid var(--gray-400);
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.containerTodoEmpty p {
+  color: var(--gray-300);
+  line-height: 1.4rem;
+}
+.containerTodoEmpty p:not(:last-child) {
+  font-weight: bold;
+  margin-top: 1rem;
+}
