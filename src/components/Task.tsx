@@ -1,18 +1,37 @@
 import { PlusCircle, Trash } from "@phosphor-icons/react";
 import styles from "./Task.module.css";
-// import { TodoEmpty } from "./TodoEmpty";
+import { useState } from "react";
+import { TodoEmpty } from "./TodoEmpty";
 
 export function Task() {
+  const [tasks, setTasks] = useState<string[]>([]);
+
+  const [newTaskContent, setNewTaskContent] = useState("");
+
+  function handleCreateNewTask(event: React.FormEvent) {
+    event.preventDefault();
+    setTasks([...tasks, newTaskContent]);
+    setNewTaskContent("");
+  }
+
+  function handleNewTaskChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setNewTaskContent(event.target.value);
+  }
+
   return (
     <>
-      <div className={styles.containerInput}>
-        <input placeholder="Adicione uma nova tarefa" type="text" />
-
+      <form className={styles.containerInput} onSubmit={handleCreateNewTask}>
+        <input
+          placeholder="Adicione uma nova tarefa..."
+          type="text"
+          onChange={handleNewTaskChange}
+          value={newTaskContent}
+        />
         <button>
           Criar
           <PlusCircle size={20} />
         </button>
-      </div>
+      </form>
       <header>
         <div>
           <p className={styles.taskCreated}>Tarefas criadas</p>
@@ -23,20 +42,23 @@ export function Task() {
           <span className={styles.taskCounter}>0</span>
         </div>
       </header>
-      {/* <TodoEmpty /> */}
-      <div className={styles.containerTodo}>
-        <label>
-          <input type="checkbox" name="" id="" />
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged.
-          <span className={styles.checkmark}></span>
-        </label>
-        <Trash size={24} />
-      </div>
+
+      {tasks.length !== 0 ? (
+        tasks.map((task) => {
+          return (
+            <div className={styles.containerTodo}>
+              <label>
+                <input type="checkbox" />
+                {task}
+                <span className={styles.checkmark}></span>
+              </label>
+              <Trash size={24} />
+            </div>
+          );
+        })
+      ) : (
+        <TodoEmpty />
+      )}
     </>
   );
 }
