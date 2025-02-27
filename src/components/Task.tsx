@@ -3,15 +3,32 @@ import styles from "./Task.module.css";
 import { useState } from "react";
 import { TodoEmpty } from "./TodoEmpty";
 
-export function Task() {
-  const [tasks, setTasks] = useState<string[]>([]);
+import { v4 as uuidv4 } from "uuid";
 
-  const [newTaskContent, setNewTaskContent] = useState("");
+interface TaskState {
+  id: string;
+  content: string[];
+  isCompleted: boolean;
+}
+
+export function Task() {
+  const [tasks, setTasks] = useState<TaskState>({
+    id: uuidv4(),
+    content: [] as string[],
+    isCompleted: false,
+  });
+
+  const [newTaskContent, setNewTaskContent] = useState<string>("");
 
   function handleCreateNewTask(event: React.FormEvent) {
     event.preventDefault();
-    setTasks([...tasks, newTaskContent]);
+    setTasks({
+      ...tasks,
+      id: uuidv4(),
+      content: [...tasks.content, newTaskContent],
+    });
     setNewTaskContent("");
+    console.log(tasks);
   }
 
   function handleNewTaskChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -35,7 +52,7 @@ export function Task() {
       <header>
         <div>
           <p className={styles.taskCreated}>Tarefas criadas</p>
-          <span className={styles.taskCounter}>0</span>
+          <span className={styles.taskCounter}>{tasks.content.length}</span>
         </div>
         <div>
           <p className={styles.taskCompleted}>Concluídas</p>
@@ -43,13 +60,13 @@ export function Task() {
         </div>
       </header>
 
-      {tasks.length !== 0 ? (
-        tasks.map((task) => {
+      {tasks.content.length !== 0 ? (
+        tasks.content.map((content) => {
           return (
             <div className={styles.containerTodo}>
               <label>
                 <input type="checkbox" />
-                {task}
+                {content}
                 <span className={styles.checkmark}></span>
               </label>
               <Trash size={24} />
