@@ -8,31 +8,37 @@ import { v4 as uuidv4 } from "uuid";
 interface TaskState {
   id: string;
   content: string[];
-  isCompleted: boolean;
+  isCompleted: boolean[];
 }
 
 export function Task() {
-  const [tasks, setTasks] = useState<TaskState>({
-    id: uuidv4(),
-    content: [] as string[],
-    isCompleted: false,
-  });
+  const [tasks, setTasks] = useState<TaskState[]>([]);
 
-  const [newTaskContent, setNewTaskContent] = useState<string>("");
+  const [newTaskContent, setNewTaskContent] = useState("");
+
+  const [taskCompleted, setTaskCompleted] = useState(false);
 
   function handleCreateNewTask(event: React.FormEvent) {
     event.preventDefault();
-    setTasks({
-      ...tasks,
+
+    const newTask: TaskState = {
       id: uuidv4(),
-      content: [...tasks.content, newTaskContent],
-    });
-    setNewTaskContent("");
-    console.log(tasks);
+      content: [newTaskContent],
+      isCompleted: [false],
+    };
+
+    setTasks((prevTasks) => [...prevTasks, newTask]);
+
+    console.log(tasks.length);
   }
 
   function handleNewTaskChange(event: React.ChangeEvent<HTMLInputElement>) {
     setNewTaskContent(event.target.value);
+  }
+
+  function handeTaskCompleted(event: React.ChangeEvent<HTMLInputElement>) {
+    setTaskCompleted(event.target.checked);
+    console.log(taskCompleted);
   }
 
   return (
@@ -52,7 +58,7 @@ export function Task() {
       <header>
         <div>
           <p className={styles.taskCreated}>Tarefas criadas</p>
-          <span className={styles.taskCounter}>{tasks.content.length}</span>
+          <span className={styles.taskCounter}>{tasks.length}</span>
         </div>
         <div>
           <p className={styles.taskCompleted}>Concluídas</p>
@@ -60,19 +66,19 @@ export function Task() {
         </div>
       </header>
 
-      {tasks.content.length !== 0 ? (
-        tasks.content.map((content) => {
-          return (
+      {tasks.some((task) => task.content.length > 0) ? (
+        tasks.map((task) =>
+          task.content.map((content) => (
             <div className={styles.containerTodo}>
               <label>
-                <input type="checkbox" />
+                <input type="checkbox" onChange={handeTaskCompleted} />
                 {content}
                 <span className={styles.checkmark}></span>
               </label>
               <Trash size={24} />
             </div>
-          );
-        })
+          ))
+        )
       ) : (
         <TodoEmpty />
       )}

@@ -142,3 +142,8 @@ header span {
 .containerTodo label input:checked ~ .checkmark:after {
   display: block;
 }
+
+.containerTodo label input[type="checkbox"]:checked + p {
+  text-decoration: line-through;
+  color: var(--gray-300);
+}
