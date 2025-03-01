@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 interface TaskState {
   id: string;
   content: string[];
-  isCompleted: boolean[];
+  isCompleted: boolean;
 }
 
 export function Task() {
@@ -16,7 +16,7 @@ export function Task() {
 
   const [newTaskContent, setNewTaskContent] = useState("");
 
-  const [taskCompleted, setTaskCompleted] = useState(false);
+  const completedTasksCount = tasks.filter((task) => task.isCompleted).length;
 
   function handleCreateNewTask(event: React.FormEvent) {
     event.preventDefault();
@@ -24,21 +24,32 @@ export function Task() {
     const newTask: TaskState = {
       id: uuidv4(),
       content: [newTaskContent],
-      isCompleted: [false],
+      isCompleted: false,
     };
 
     setTasks((prevTasks) => [...prevTasks, newTask]);
-
-    console.log(tasks.length);
+    setNewTaskContent("");
   }
 
   function handleNewTaskChange(event: React.ChangeEvent<HTMLInputElement>) {
     setNewTaskContent(event.target.value);
   }
 
-  function handeTaskCompleted(event: React.ChangeEvent<HTMLInputElement>) {
-    setTaskCompleted(event.target.checked);
-    console.log(taskCompleted);
+  function handleTaskCompleted(
+    taskId: string,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId
+          ? { ...task, isCompleted: event.target.checked } // Atualiza o estado de isCompleted
+          : task
+      )
+    );
+  }
+
+  function handleDeleteTask(taskId: string) {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
   }
 
   return (
@@ -62,7 +73,7 @@ export function Task() {
         </div>
         <div>
           <p className={styles.taskCompleted}>Concluídas</p>
-          <span className={styles.taskCounter}>0</span>
+          <span className={styles.taskCounter}>{completedTasksCount}</span>
         </div>
       </header>
 
@@ -71,11 +82,15 @@ export function Task() {
           task.content.map((content) => (
             <div className={styles.containerTodo}>
               <label>
-                <input type="checkbox" onChange={handeTaskCompleted} />
+                <input
+                  type="checkbox"
+                  checked={task.isCompleted}
+                  onChange={(event) => handleTaskCompleted(task.id, event)}
+                />
                 {content}
                 <span className={styles.checkmark}></span>
               </label>
-              <Trash size={24} />
+              <Trash size={24} onClick={() => handleDeleteTask(task.id)} />
             </div>
           ))
         )
