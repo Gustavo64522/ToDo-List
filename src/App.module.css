@@ -15,4 +15,12 @@
   .containerTask {
     padding: 1.5rem;
   }
+
+  .containerTodo .checkmark {
+    top: 0.125rem;
+  }
+
+  .checkmark:after {
+    bottom: -0.188rem;
+  }
 }
