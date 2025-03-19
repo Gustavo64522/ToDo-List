@@ -42,7 +42,7 @@ export function Task() {
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.id === taskId
-          ? { ...task, isCompleted: event.target.checked } // Atualiza o estado de isCompleted
+          ? { ...task, isCompleted: event.target.checked }
           : task
       )
     );
@@ -73,10 +73,19 @@ export function Task() {
         </div>
         <div>
           <p className={styles.taskCompleted}>Concluídas</p>
-          <span className={styles.taskCounter}>{completedTasksCount}</span>
+          <div className={styles.taskCounter}>
+            <span>
+              {completedTasksCount > 0 ? (
+                <span>
+                  {completedTasksCount} de {tasks.length}
+                </span>
+              ) : (
+                <span>{completedTasksCount}</span>
+              )}
+            </span>
+          </div>
         </div>
       </header>
-
       {tasks.some((task) => task.content.length > 0) ? (
         tasks.map((task) =>
           task.content.map((content) => (
@@ -87,10 +96,12 @@ export function Task() {
                   checked={task.isCompleted}
                   onChange={(event) => handleTaskCompleted(task.id, event)}
                 />
-                {content}
+                <span className={styles.taskText}>{content}</span>
                 <span className={styles.checkmark}></span>
               </label>
-              <Trash size={24} onClick={() => handleDeleteTask(task.id)} />
+              <span className={styles.trashIcon}>
+                <Trash size={24} onClick={() => handleDeleteTask(task.id)} />
+              </span>
             </div>
           ))
         )
