@@ -1,50 +1,64 @@
-# React + TypeScript + Vite
+# 📌 ToDo List
+![Badge de Status](https://img.shields.io/badge/Status-Concluído-brightgreen)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## 📖 Descrição
+Este projeto foi desenvolvido com o intuito de fortalecer meus conhecimentos em React e TypeScript, além de aprimorar minha didática para compartilhar conhecimento. A aplicação consiste em uma lista de tarefas simples, onde os usuários podem adicionar, visualizar, excluir e marcar tarefas como concluídas. Além disso, a plataforma exibe um contador com o total de tarefas cadastradas e outro com a quantidade de tarefas concluídas.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologias Utilizadas
 
-## Expanding the ESLint configuration
+- [TypeScript](https://www.typescriptlang.org/)
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+- [React](https://react.dev/)
+- [HTML5](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
+- [CSS3](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
+- VIte, CSS Modules
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 📸 Demonstração
+![Captura de tela 2025-03-20 182521](https://github.com/user-attachments/assets/16587fbd-7777-411d-97ea-cbbbd7862701)
 
-- Configure the top-level `parserOptions` property like this:
+## ⚙️ Funcionalidades
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+✔️ Adicionar tarefas à lista  
+✔️ Visualizar todas as tarefas cadastradas  
+✔️ Marcar tarefas como concluídas  
+✔️ Excluir tarefas da lista  
+✔️ Exibir o total de tarefas cadastradas  
+✔️ Exibir a quantidade de tarefas concluídas  
+
+## 🎯 Como Usar
+
+```bash
+# Clone este repositório
+$ git clone git@github.com:Gustavo64522/ToDo-List.git
+
+# Entre no diretório
+$ cd ToDo-List
+
+# Instale as dependências
+$ npm install  # ou yarn install
+
+# Execute o projeto
+$ npm start  # ou yarn start
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🛠 Melhorias Futuras
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- [ ] Criar a funcionalidade de editar tarefas adicionadas
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## 📌 Contribuição
+
+Sinta-se à vontade para contribuir! Basta seguir os passos:
+1. Faça um Fork do projeto
+2. Crie uma branch (`git checkout -b minha-feature`)
+3. Faça commit das mudanças (`git commit -m 'Adiciona nova feature'`)
+4. Faça um push para a branch (`git push origin minha-feature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+Feito  por [Gustavo Andrade](https://github.com/gustavo64522)
